@@ -1,0 +1,61 @@
+The company has a certain number of vehicles available, for which the following data is stored: unique identifier (ID - string), acquisition date, purchase price, manufacturer, model, and description. For electric bicycles, the following data is stored: unique identifier (ID - string), manufacturer, model, purchase price, range on a single charge (autonomy). For electric scooters, the following data is stored: unique identifier (ID - string), manufacturer, model, purchase price, and maximum speed. All transportation devices can break down, with the reason for the breakdown (description) and the date and time recorded. The data needs to be organized so that, at any given moment, it is possible to determine whether a transportation device is broken or rented. ID values, which are textual types, are defined manually and are not the same as the primary key IDs that can be defined in database tables. All transportation devices must have an image.
+
+For manufacturers, the following information is stored: name, country, address, and contact details (phone, fax, email). The company's primary business is renting transportation devices. During the rental process, the date and time of rental, the user, the current location where the transportation device was picked up, the location where it is dropped off after use, and the duration of use are recorded. Locations should be stored as coordinates. When renting a car, an identification document (passport for foreign citizens and ID card for domestic citizens) and a driver’s license (number) must be provided. Based on this data, an invoice is generated and delivered to the users as a PDF file within the application.
+
+Users of the application can be company employees (administrators, operators, management) or clients (those who rent transportation devices). Clients must create an account in the system and provide their first name, last name, ID card number, email, and phone number, and they can upload an avatar image. Additionally, extra information required for renting transportation devices must be stored. Employees also have profiles where their first name, last name, and job position (as a role) are stored. All users log into the system using a username and password.
+
+The system allows the creation of posts and promotions as a form of marketing activity. Spring Boot application functionalities that will be used in other applications should be implemented as RESTful services. An RSS feed must be created to return information about promotions and posts. Additional data that are useful for the system's operations but are not defined in the task description may be added.
+
+--------------------
+
+Employee Application
+
+This is the central system application used by employees. The application should have a login page, and depending on the employee's role, various options will be displayed.
+
+Administrators have access to the following pages:
+
+Transportation Management Page: Displays all transportation devices categorized by type (tabs, separate pages, segments, etc.) in a tabular format. On this part of the application, it should be possible to create a new transportation device or delete a selected one. Additionally, there should be an option to upload a CSV file containing transportation device data. The format of the file should be defined independently.
+Details Page: Displays all data about a single transportation device. In addition to the basic information, all breakdowns (which can be added or removed) and all rentals of the transportation device are shown.
+Manufacturer Management Page: CRUD (Create, Read, Update, Delete) operations for manufacturers.
+User Management Page: Displays all users (clients and employees, shown separately). Client accounts can be blocked or unblocked, and CRUD operations should be enabled for employee accounts.
+Operators have access to the following pages:
+
+Rental Overview Page: Displays information about rentals (read-only).
+Transportation Map Page: Displays transportation devices on a map (implement the map as a matrix or use a library to show a real map).
+Client Overview Page: Displays clients with options to block or unblock their accounts.
+Breakdown Entry Page: Allows the entry of breakdowns for transportation devices.
+Managers have access to the following pages:
+
+All administrator pages.
+All operator pages.
+Statistics Page: Displays charts for total revenue by day for a selected month, the number of breakdowns per transportation device, and total revenue by type of transportation device. Ready-made libraries can be used for creating charts.
+Rental Pricing Page: Allows the definition of rental prices.
+On all pages displaying data, it should be possible to search by at least one column value. Pagination (or virtual scrolling for lists) must be implemented for tables.
+
+---------------------
+
+Client Application
+
+The homepage features a login form. If the login is successful, a page with four options is displayed: renting a scooter, renting a bicycle, renting a car, and viewing the profile.
+
+When the rental option is selected, the user enters the required information (location detection - manually or automatically), selects the transportation device, completes the payment (providing a payment card and confirming the payment), and begins the ride. During the ride, a screen is displayed showing the total amount to be paid, the duration of the ride (timer), and an option to end the ride.
+
+On the profile page, the client can change their password, deactivate their account, and view all their past rentals.
+
+The application must be implemented using JSP Model 2 architecture. This application cannot use the RESTful services of the Spring Boot application. Ready-made libraries for designing the user interface are allowed. The design of the application must be primarily optimized for devices with small screens.
+
+-----------------------------
+Promotion Creation Application
+
+This application is accessible only to managers. Upon successful login, a page is displayed where all created promotions and posts can be viewed and searched by content. It should be possible to create a new post (title, content) and a promotion (title, description, duration date).
+
+The application must be implemented using JSP.
+
+Notes:
+
+The project task is done individually.
+When submitting the project, it is necessary to deliver the complete source code and the data model. Test data must also be defined.
+In the realization of the project task, the use of code generators is prohibited, except for those used in laboratory exercises or lectures.
+The user interface should be consistently organized, meaning all pages should have a similar appearance and intuitive controls and display.
+Every form of server-side validation must be implemented as efficiently as possible. Client-side validation is mandatory.
+The use of stored procedures, functions, and triggers is not allowed. Therefore, the database must not have any logic apart from the defined tables and the constraints that apply to them.

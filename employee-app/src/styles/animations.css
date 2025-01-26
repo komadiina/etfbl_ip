@@ -1,0 +1,10 @@
+.slide-in {
+  opacity: 0;
+  transform: translateY(-250px);
+  transition: opacity 1s ease, transform 1.5s ease;
+}
+
+.slide-in.active {
+  opacity: 1;
+  transform: translateY(0);
+}

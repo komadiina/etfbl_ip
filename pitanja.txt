@@ -1,0 +1,16 @@
+ip projektni nedoumice
+	- Podatke je potrebno tako organizovati da se u bilo kojem trenutku mogu dobiti informacije da li je prevozno sredstvo pokvareno ili iznajmljeno
+		- dovoljno samo evidentirati Rentals <- DeviceID ->  TransportationDevices?
+		- ili je potrebno napraviti neki periodicni watcher servis/dispecer
+	- Osim toga, čuvati i dodatne podatke koji su potrebni da se iznajme prevozna sredstva.
+		- klijent: mozda dodati balans/novcanik kao dodatni entitet, pri odredjivanju mogucnosti iznajmljivanja?
+	- Stranica za pregled prevoznih sredstava na mapi (mapu implementirati kao matricu ili pomoću neke biblioteke kao realnu mapu).
+		- trenutno u bazi definisano kao realne koordinate (dropoff/pickup latitude/longitude), jednostavnije mozda kao matrica? kakav je prikaz onda, kako 				korisnik definise mjesto ostavljanja? "detekcija lokacije - rucno ili automatski" 	
+		- Lokacije čuvati kao koordinate - samo x,y ako se koristi matricni pristup?
+	- Napraviti RSS feed koji vraća informacije o promocijama i objavama. - kako, sta, gdje?
+		- https://www.baeldung.com/spring-mvc-rss-feed koristeci ROME rss?
+	- (Aplikacija za klijente) jsp m2 - jsf? https://www.primefaces.org/showcase/index.xhtml?jfwid=85490 
+
+-- ako radim specijalizaciju: user input mora da definise sva polja transportationDevice-a, pa onda tek specificna (ako postoje i nisu ID tabele)
+	- api poziv prima HashMap<String, Object> i parsira u zavisnosti od endpoint-a (ima muke)
+-- finder metode: namjenski kreirane, tokom rada
