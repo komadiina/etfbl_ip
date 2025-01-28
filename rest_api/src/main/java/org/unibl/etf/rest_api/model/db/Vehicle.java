@@ -11,9 +11,8 @@ import lombok.NoArgsConstructor;
 @Table(name = "vehicles")
 @PrimaryKeyJoinColumn(name = "VehicleID", referencedColumnName = "DeviceID")
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
+//@NoArgsConstructor
+//@AllArgsConstructor
 public class Vehicle extends TransportationDevice {
 //    @Column(name = "VehicleID", updatable = false, unique = true, nullable = false, columnDefinition = "serial")
-    private int vehicleID;
 }

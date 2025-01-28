@@ -30,10 +30,13 @@ public class Rental {
     @Column(name = "PriceID", nullable = false, columnDefinition = "int")
     private int priceID;
 
+    @Column(name = "DriversLicense", nullable = false, columnDefinition = "varchar(100)")
+    private String driversLicense;
+
     @Column(name = "StartDateTime", nullable = false, columnDefinition = "datetime")
     private LocalDateTime startDateTime;
 
-    @Column(name = "EndDateTime", nullable = false, columnDefinition = "datetime")
+    @Column(name = "EndDateTime", nullable = true, columnDefinition = "datetime")
     private LocalDateTime endDateTime;
 
     @Column(name = "PickupX", nullable = false, columnDefinition = "int")
@@ -42,12 +45,12 @@ public class Rental {
     @Column(name = "PickupY", nullable = false, columnDefinition = "int")
     private int pickupY;
 
-    @Column(name = "DropoffX", nullable = false, columnDefinition = "int")
-    private int dropoffX;
+    @Column(name = "DropoffX", nullable = true, columnDefinition = "int")
+    private Integer dropoffX;
 
-    @Column(name = "DropoffY", nullable = false, columnDefinition = "int")
-    private int dropoffY;
+    @Column(name = "DropoffY", nullable = true, columnDefinition = "int")
+    private Integer dropoffY;
 
-    @Column(name = "Duration", nullable = false, columnDefinition = "int")
-    private int duration;
+    @Column(name = "Duration", nullable = true, columnDefinition = "int")
+    private Integer duration;
 }

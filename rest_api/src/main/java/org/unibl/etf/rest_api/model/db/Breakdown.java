@@ -24,6 +24,9 @@ public class Breakdown {
     @Column(name = "DeviceID", nullable = false, columnDefinition = "int")
     private int deviceID;
 
+    @Column(name = "IsActive", nullable = false, columnDefinition = "tinyint(1) default 1")
+    private boolean active;
+
     @Column(name = "Description", nullable = false, columnDefinition = "text")
     private String description;
 

@@ -7,6 +7,8 @@ import org.unibl.etf.rest_api.model.db.Promotion;
 import org.unibl.etf.rest_api.repository.PromotionRepository;
 import org.unibl.etf.rest_api.service.CRUDService;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class PromotionService implements CRUDService<Promotion> {
@@ -38,5 +40,10 @@ public class PromotionService implements CRUDService<Promotion> {
     @Override
     public Promotion retrieve(int id) {
         return repository.findById(id).orElse(null);
+    }
+
+    @Override
+    public List<Promotion> retrieveAll() {
+        return repository.findAll();
     }
 }

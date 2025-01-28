@@ -1,0 +1,13 @@
+uuid,deviceType,acquisitionDate,purchasePrice,manufacturerID,model,description,status,autonomy,maxSpeed
+V001,Vehicle,2023-01-15,25000.00,1,Sedan 2023,Comfortable 4-door sedan,Available,,
+V002,Vehicle,2023-02-20,35000.00,2,SUV XL,Spacious family SUV,Rented,,
+EB001,ElectricBicycle,2023-03-10,1500.00,5,CityRider,Urban electric bicycle,Available,50,
+EB002,ElectricBicycle,2023-04-05,2000.00,18,MountainE,Off-road electric bicycle,Broken,75,
+ES001,ElectricScooter,2023-05-01,800.00,19,ScootFast,Compact electric scooter,Available,,25
+ES002,ElectricScooter,2023-06-15,1200.00,20,LongRanger,Long-range electric scooter,Available,,30
+V003,Vehicle,2023-07-20,28000.00,1,Hatchback Eco,Fuel-efficient hatchback,Available,,
+EB003,ElectricBicycle,2023-08-05,1800.00,2,CommuteMax,Commuter electric bicycle,Available,60,
+ES003,ElectricScooter,2023-09-10,900.00,5,FoldNGo,Foldable electric scooter,Rented,,20
+V004,Vehicle,2023-10-01,40000.00,18,Pickup Pro,Heavy-duty pickup truck,Available,,
+EB004,ElectricBicycle,2023-11-15,2200.00,19,SpeedyE,High-speed electric bicycle,Available,80,
+ES004,ElectricScooter,2023-12-20,1000.00,20,UrbanGlide,Sleek urban electric scooter,Broken,,28

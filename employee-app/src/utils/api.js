@@ -22,16 +22,16 @@ api.instance.interceptors.request.use(config => {
   return config;
 })
 
-api.instance.interceptors.response.use(
-  response => response,
-  error => {
-    if (error.status === 401) {
-      localStorage.removeItem("username");
-      window.location.href = '/login';
-    }
+// api.instance.interceptors.response.use(
+//   response => response,
+//   error => {
+//     if (error.status === 401) {
+//       localStorage.removeItem("username");
+//       window.location.href = '/login';
+//     }
 
-    return Promise.reject(error);
-  }
-)
+//     return Promise.reject(error);
+//   }
+// )
 
 export default api;

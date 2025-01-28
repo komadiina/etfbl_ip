@@ -32,6 +32,23 @@
   @apply border-2 border-red-400 border-opacity-15;
 }
 
+.table-header {
+  @apply border-2 border-opacity-15 border-white hover:cursor-pointer
+    hover:bg-white hover:bg-opacity-10 hover:shadow-lg transition-all duration-300 p-2
+  ;
+}
+
+.table-row {
+  @apply py-4 my-4 hover:bg-white hover:bg-opacity-10 hover:shadow-lg transition-all duration-300;
+}
+
+.table-entry {
+  @apply py-2 border-b-2 border-white border-opacity-5 text-lg hover:cursor-pointer;
+}
+
+.info-pane-detail {
+  @apply text-xl pb-2;
+}
 
 .switch {
   position: relative;

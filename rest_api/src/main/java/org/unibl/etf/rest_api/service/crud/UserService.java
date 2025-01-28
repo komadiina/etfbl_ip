@@ -2,10 +2,14 @@ package org.unibl.etf.rest_api.service.crud;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.unibl.etf.rest_api.model.db.User;
 import org.unibl.etf.rest_api.repository.UserRepository;
 import org.unibl.etf.rest_api.service.CRUDService;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -40,7 +44,16 @@ public class UserService implements CRUDService<User> {
         return repository.findById(id).orElse(null);
     }
 
+    @Override
+    public List<User> retrieveAll() {
+        return repository.findAll();
+    }
+
     public User retrieve(String username) {
         return repository.findByUsername(username).orElse(null);
+    }
+
+    public Page<User> retrieveAllPaginated(PageRequest pageRequest) {
+        return repository.findAll(pageRequest);
     }
 }

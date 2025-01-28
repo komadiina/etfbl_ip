@@ -8,12 +8,7 @@ export default function Login(props) {
   return (
     <div className="flex flex-col gap-4 slide-in max-w-screen-xl mx-auto">
       <h1 className="card p-4 shadow-md font-bold text-xl">Employee Portal</h1>
-
       <LoginForm />
-
-      {
-        /* <button onClick={() => navigate("/register")} className="card p-4 shadow-md">Don't have an account? Register here!</button> */
-      }
     </div>
 
   )

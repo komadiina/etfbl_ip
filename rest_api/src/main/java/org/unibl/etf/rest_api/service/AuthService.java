@@ -56,8 +56,6 @@ public class AuthService {
         if (!user.isActive())
             throw new Exception("Account deactivated.");
 
-        System.out.println(user);
-
         Employee employee = employeeService.retrieve(user.getId());
         if (employee == null)
             throw new Exception("User is not an employee.");

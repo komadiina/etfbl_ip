@@ -14,9 +14,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ElectricScooter extends TransportationDevice {
-//    @Column(name = "ScooterID", updatable = false, unique = true, nullable = false, columnDefinition = "serial")
-    private int scooterID;
-
     @Column(name = "MaxSpeed", nullable = false, columnDefinition = "int")
     private int maxSpeed;
 }

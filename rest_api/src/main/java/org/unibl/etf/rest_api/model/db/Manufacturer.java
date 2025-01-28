@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.security.PrivateKey;
 
@@ -12,6 +13,7 @@ import java.security.PrivateKey;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Manufacturer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,15 +26,15 @@ public class Manufacturer {
     @Column(name = "Country", nullable = false, columnDefinition = "varchar(50)")
     private String country;
 
-    @Column(name = "Address", nullable = false, columnDefinition = "text")
+    @Column(name = "Address", columnDefinition = "text")
     private String address;
 
-    @Column(name = "Phone", nullable = false, columnDefinition = "varchar(20)")
+    @Column(name = "Phone", columnDefinition = "varchar(20)")
     private String phone;
 
-    @Column(name = "Fax", nullable = false, columnDefinition = "varchar(20)")
+    @Column(name = "Fax", columnDefinition = "varchar(20)")
     private String fax;
 
-    @Column(name = "Email", nullable = false, columnDefinition = "varchar(100)")
+    @Column(name = "Email", columnDefinition = "varchar(100)")
     private String email;
 }

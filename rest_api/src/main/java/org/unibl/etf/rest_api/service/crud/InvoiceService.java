@@ -7,6 +7,8 @@ import org.unibl.etf.rest_api.model.db.Invoice;
 import org.unibl.etf.rest_api.repository.InvoiceRepository;
 import org.unibl.etf.rest_api.service.CRUDService;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class InvoiceService implements CRUDService<Invoice> {
@@ -38,5 +40,10 @@ public class InvoiceService implements CRUDService<Invoice> {
     @Override
     public Invoice retrieve(int id) {
         return repository.findById(id).orElse(null);
+    }
+
+    @Override
+    public List<Invoice> retrieveAll() {
+        return repository.findAll();
     }
 }

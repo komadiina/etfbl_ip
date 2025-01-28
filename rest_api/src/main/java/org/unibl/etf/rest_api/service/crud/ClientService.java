@@ -1,11 +1,15 @@
 package org.unibl.etf.rest_api.service.crud;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.unibl.etf.rest_api.model.db.Client;
 import org.unibl.etf.rest_api.model.db.User;
 import org.unibl.etf.rest_api.repository.ClientRepository;
 import org.unibl.etf.rest_api.service.CRUDService;
+
+import java.util.List;
 
 @Service
 public class ClientService implements CRUDService<Client> {
@@ -37,5 +41,24 @@ public class ClientService implements CRUDService<Client> {
     @Override
     public Client retrieve(int id) {
         return repository.findById(id).orElse(null);
+    }
+
+    @Override
+    public List<Client> retrieveAll() {
+        return repository.findAll();
+    }
+
+    public Page<Client> retrieveAllPaginated(PageRequest pageRequest) {
+        return repository.findAll(pageRequest);
+    }
+
+    public Client toggleActive(int clientID) throws Exception{
+        Client client = retrieve(clientID);
+
+        if (client == null)
+            throw new Exception("Client does not exist.");
+
+        client.setActive(!client.isActive());
+        return repository.save(client);
     }
 }

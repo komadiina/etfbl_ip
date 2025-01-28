@@ -7,6 +7,8 @@ import org.unibl.etf.rest_api.model.db.Post;
 import org.unibl.etf.rest_api.repository.PostRepository;
 import org.unibl.etf.rest_api.service.CRUDService;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class PostService implements CRUDService<Post> {
@@ -38,5 +40,10 @@ public class PostService implements CRUDService<Post> {
     @Override
     public Post retrieve(int id) {
         return repository.findById(id).orElse(null);
+    }
+
+    @Override
+    public List<Post> retrieveAll() {
+        return repository.findAll();
     }
 }
