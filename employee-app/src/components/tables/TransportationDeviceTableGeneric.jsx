@@ -94,12 +94,12 @@ export default function TransportationDeviceGenericTable() {
 
   const handleFilter = (event) => {
     const filterValue = event.target.value;
-    const filteredVehicles = transportationDevices.filter(vehicle => vehicle.name.toLowerCase().includes(filterValue.toLowerCase()));
+    const filteredVehicles = transportationDevices.filter(vehicle => vehicle.model.toLowerCase().includes(filterValue.toLowerCase()));
     setTransportationDevices(filteredVehicles);
   };
 
   const handleInfo = (device) => {
-    console.log(device)
+    // console.log(device)
     if (!device || !device.deviceID) {
       console.error('Invalid device or deviceID');
       return;
@@ -120,6 +120,7 @@ export default function TransportationDeviceGenericTable() {
       totalPages={totalPages}
       onInfo={handleInfo}
       onFilter={handleFilter}
+      filterTarget={'model'}
       onEntryClick={() => { navigate(`/transportation-devices/${transportationDevices[0].id}`) }}
       onNextPage={() => setCurrentPage(prev => prev + 1)}
       onPrevPage={() => setCurrentPage(prev => prev - 1)}

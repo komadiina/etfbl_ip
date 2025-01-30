@@ -47,7 +47,7 @@ export default function RentalPanel() {
         rentalPrice: rentalPricesResponse.data.find(rp => rp.id === r.rentalPriceID)?.pricePerMinute || 'N/A'
       })));
 
-      console.log(transportationDevicesResponse);
+      // console.log(transportationDevicesResponse);
 
       setRentalsPage(rentalsResponse.data.pageable.pageNumber);
       setRentalsTotalPages(rentalsResponse.data.totalPages);

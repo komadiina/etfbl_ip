@@ -54,7 +54,7 @@ export default function RentalPricingPanel() {
           isActive: d.active === true ? 'Active' : 'Inactive'
         })));
 
-      console.log(devicePricingsResponse.data.content)
+      // console.log(devicePricingsResponse.data.content)
     } catch (error) {
       console.log(error);
     }

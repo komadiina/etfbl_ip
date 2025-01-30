@@ -63,9 +63,14 @@ export default function ClientTableGeneric() {
   };
 
   const onInfoClient = (item) => {
-    console.log(item);
+    // console.log(item);
     navigate(`/clients/${item.id}`);
   };
+
+  const handleFilter = (ev) => {
+    const filteredClients = clients.filter(client => client.username.toLowerCase().includes(ev.target.value.toLowerCase()));
+    setClients(filteredClients);
+  }
 
   return (
     clients &&
@@ -77,6 +82,8 @@ export default function ClientTableGeneric() {
         onInfo={onInfoClient}
         onToggleActivity={onToggleClientActivity}
         onSort={onSortClient}
+        onFilter={handleFilter}
+        filterTarget={'username'}
         currentPage={clientPage}
         totalPages={clientPageTotal}
         onNextPage={() => setClientPage(prev => Math.min(prev + 1, clientPageTotal - 1))}

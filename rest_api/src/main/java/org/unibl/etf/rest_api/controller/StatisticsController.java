@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.unibl.etf.rest_api.service.StatisticsService;
 
 @RestController
 @RequestMapping("/api/statistics")
@@ -17,5 +18,6 @@ public class StatisticsController {
     public ResponseEntity<?> getAll(
             @RequestParam(name = "month") Integer month,
             @RequestParam(name = "year") Integer year) {
+        return null; // TODO
     }
 }

@@ -62,4 +62,38 @@ public class AuthService {
 
         return employee.obscure();
     }
+
+    public Client loginClient(String username, String password) throws Exception {
+        User user = userService.retrieve(username);
+        if (user == null)
+            throw new Exception("User not found");
+
+        if (!new BCryptPasswordEncoder().matches(password, user.getPassword()))
+            throw new Exception("Invalid credentials.");
+
+        if (!user.isActive())
+            throw new Exception("Account deactivated.");
+
+        Client client = clientService.retrieve(user.getId());
+        if (client == null)
+            throw new Exception("User is not a client.");
+
+        return (Client)client.obscure();
+    }
+
+    public Client registerClient(RegisterDto registerDto) {
+        Client client = new Client();
+        client.setIdCardNumber(registerDto.getIdCardNumber());
+        client.setPassportID(registerDto.getPassportID());
+        client.setFirstName(registerDto.getFirstName());
+        client.setLastName(registerDto.getLastName());
+        client.setEmail(registerDto.getEmail());
+        client.setPhoneNumber(registerDto.getPhoneNumber());
+        client.setUsername(registerDto.getUsername());
+        client.setPassword(new BCryptPasswordEncoder().encode(registerDto.getPassword()));
+        client.setUserType("Client");
+        client.setActive(true);
+
+        return clientService.create(client);
+    }
 }

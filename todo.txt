@@ -1,1 +1,4 @@
-dodati 'driversLicenseID' u Rentals
+2. onda bi employeeapp mogla pravilno kupiti informacije sa api-ja - PROVJERITI (!!!!!!!!!!!!)
+	- stranica za statistiku
+3. aplikacija za promocije
+	- sve

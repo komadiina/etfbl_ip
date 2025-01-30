@@ -39,6 +39,12 @@ const ManufacturerTableGeneric = () => {
     }
   };
 
+  const handleFilter = (event) => {
+    const filterValue = event.target.value;
+    const filteredManufacturers = manufacturers.filter(manufacturer => manufacturer.name.toLowerCase().includes(filterValue.toLowerCase()));
+    setManufacturers(filteredManufacturers);
+  };
+
   const columns = [
     { key: 'name', label: 'Name' },
     { key: 'country', label: 'Country' },
@@ -54,6 +60,8 @@ const ManufacturerTableGeneric = () => {
       columns={columns}
       onSort={handleSort}
       onDelete={handleDelete}
+      onFilter={handleFilter}
+      filterTarget={'name'}
       currentPage={currentPage}
       totalPages={totalPages}
       onNextPage={() => setCurrentPage(prev => prev + 1)}

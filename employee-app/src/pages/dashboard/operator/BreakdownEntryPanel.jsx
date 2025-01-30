@@ -37,10 +37,10 @@ export default function BreakdownEntryPanel() {
 
   const onSubmit = async (data) => {
     try {
-      console.log(data);
+      // console.log(data);
 
       const response = await api.instance.post('/breakdowns', data);
-      console.log('Breakdown created:', response.data);
+      // console.log('Breakdown created:', response.data);
 
       if (response.status == 200) {
         setSubmitSuccess(true);

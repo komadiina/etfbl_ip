@@ -11,7 +11,7 @@ const NewEmployeeForm = () => {
     try {
       data = { ...data, userType: 'Employee' }
       const response = await api.instance.post('/employees', data);
-      console.log('Employee created:', response.data);
+      // console.log('Employee created:', response.data);
       setSubmitSuccess(true);
       setSubmitError(null);
       reset();

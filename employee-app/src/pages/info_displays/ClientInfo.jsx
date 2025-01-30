@@ -24,7 +24,7 @@ export default function ClientInfoDisplay() {
       }))
     } catch (error) {
       setError(error);
-      console.log(error)
+      // console.log(error)
     }
   }
 

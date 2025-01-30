@@ -65,4 +65,14 @@ public class TransportationDeviceController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    @GetMapping("/available/all")
+    public ResponseEntity<?> getAllAvailable() {
+        try {
+            return ResponseEntity.ok(transportationDeviceService.retrieveAllAvailableWithPositionInfo());
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 }

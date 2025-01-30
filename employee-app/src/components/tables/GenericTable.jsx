@@ -6,6 +6,8 @@ const GenericTable = ({
   onSort,
   onDelete,
   onInfo,
+  onFilter,
+  filterTarget,
   currentPage,
   totalPages,
   onNextPage,
@@ -25,6 +27,16 @@ const GenericTable = ({
 
   return (
     <div className="max-w-screen-2xl mx-auto w-full px-4 sm:px-6 lg:px-8">
+      {onFilter && (
+        <div className="mb-4">
+          <input
+            type="text"
+            className='minimal-input hover-highlight w-full'
+            placeholder={`${filterTarget ? `Filter by ${filterTarget}` : 'Filter'}`}
+            onInput={onFilter}
+          />
+        </div>
+      )}
       <table className="min-w-full divide-y divide-gray-200">
         <thead className="table-header">
           <tr>

@@ -58,19 +58,19 @@ export default function TransportationDevicesPanel() {
 
   const handleDeviceTypeChange = (event) => {
     setDeviceType(event.target.value);
-    console.log(event.target.value);
+    // console.log(event.target.value);
   };
 
   const handleManufacturerChange = (event) => {
     // nema logike da mi idalje prikazuje samo ime u displeju l o l
     // mrzim js
-    console.log(event.target.value)
+    // console.log(event.target.value)
     formData.manufacturerID = event.target.value.split('#')[0]
   }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(formData);
+    // console.log(formData);
 
     const requiredFields = ['uuid', 'acquisitionDate', 'purchasePrice', 'manufacturerID', 'model', 'description'];
     if (deviceType === 'electricScooter') requiredFields.push('maxSpeed');
@@ -93,7 +93,7 @@ export default function TransportationDevicesPanel() {
       response = await api.instance.post('/electric-bicycles', formData);
     }
 
-    console.log(response);
+    // console.log(response);
 
     if (response.status === 200) {
       setFormData({

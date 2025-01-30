@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.unibl.etf.rest_api.model.db.Employee;
 import org.unibl.etf.rest_api.repository.EmployeeRepository;
@@ -19,6 +20,8 @@ public class EmployeeService implements CRUDService<Employee> {
 
     @Override
     public Employee create(Employee employee) {
+        employee.setPassword(new BCryptPasswordEncoder().encode(employee.getPassword()));
+
         return repository.save(employee);
     }
 
