@@ -20,11 +20,12 @@ export default function TransportationDeviceMap() {
 
     const devices = rentals.filter(rental => {
       return (
-        rental.dropoffX === x &&
-        rental.dropoffY === y
+        rental.posX === x &&
+        rental.posY === y
       );
     })
-    console.log(devices)
+
+    // console.log(devices)
     setTargetDevices(devices);
   };
 
@@ -35,43 +36,36 @@ export default function TransportationDeviceMap() {
   const fetchRentalData = async () => {
     try {
       const [
-        rentalsResponse,
+        // rentalsResponse,
         transportationDevicesResponse,
         rentalPricesResponse,
         clientsResponse] = await Promise.all([
-          api.instance.get('/rentals'),
+          // api.instance.get('/rentals'),
           api.instance.get('/transportation-devices/available/all'),
           api.instance.get('/rental-prices'),
           api.instance.get('/clients')
         ]);
 
-      console.log(rentalsResponse.data)
-      console.log(transportationDevicesResponse.data)
-      console.log(rentalPricesResponse.data)
-      console.log(clientsResponse.data)
 
-      const filteredRentals = rentalsResponse.data.filter(rental => {
-        return (
-          rental.clientID === clientsResponse.data.find(c => c.id === rental.clientID)?.id &&
-          rental.deviceID === transportationDevicesResponse.data.find(d => d.device.deviceID === rental.deviceID)?.id &&
-          rental.rentalPriceID === rentalPricesResponse.data.find(rp => rp.id === rental.rentalPriceID)?.id
-        );
-      });
+      let filteredRentals = transportationDevicesResponse.data.filter(device => ({
+        ...device,
+        // clientName: clientsResponse.data.find(c => c.id === device.clientID)?.firstName + ' ' + clientsResponse.data.find(c => c.id === device.clientID)?.lastName,
+        deviceName: transportationDevicesResponse.data.find(d => d.deviceID === device.deviceID)?.model || 'N/A',
+        rentalPrice: rentalPricesResponse.data.find(rp => rp.deviceID === device.deviceID)?.pricePerMinute || 'N/A'
+      }));
 
-      console.log(filteredRentals)
+      filteredRentals = filteredRentals.map(fr => ({
+        ...fr,
+        deviceName: transportationDevicesResponse.data.find(d => d.deviceID === fr.deviceID)?.model || 'N/A',
+        rentalPrice: rentalPricesResponse.data.find(rp => rp.deviceID === fr.deviceID)?.pricePerMinute || 'N/A'
+      }))
+
       setRentals(filteredRentals)
 
-      if (filteredRentals.length === 0) {
-        setMessage("No available devices found.");
-        return;
-      }
-
-      // Process the rental data
       const newGridData = Array(20).fill().map(() => Array(20).fill(0));
-
-      filteredRentals.data.forEach(rental => {
-        const x = Math.floor(rental.dropoffX);
-        const y = Math.floor(rental.dropoffY);
+      filteredRentals.forEach(rental => {
+        const x = rental.posX
+        const y = rental.posY;
         if (x >= 0 && x < 20 && y >= 0 && y < 20) {
           newGridData[y][x]++;
         }
@@ -91,7 +85,7 @@ export default function TransportationDeviceMap() {
 
   return (
     initialized &&
-    <div className="w-full flex flex-col gap-4 items-start justify-start" >
+    <div className="w-full flex flex-col gap-4 items-start justify-start max-w-screen-2xl" >
       <h2 className="text-xl font-bold mb-4">Device Locations</h2>
 
       <div className="grid grid-flow-row grid-rows-20 gap-0.5 w-full card">
@@ -110,19 +104,24 @@ export default function TransportationDeviceMap() {
         ))}
       </div>
 
-      {isCellFocused && (
-        targetDevices.map(td => {
-          return (
-            <div key={td.rentalID}>
-              <p className="text-2xl font-bold px-2 text-left">Device information</p>
-              <p className="px-2 text-left">Location: ({cellX}, {cellY})</p>
-              <p className="px-2 text-left">Client: {td.clientName}</p>
-              <p className="px-2 text-left">Vehicle: {td.deviceName}</p>
-              <p className="px-2 text-left">PPM rate: {td.rentalPrice}</p>
-            </div>
-          )
-        })
-      )}
+      <div className="flex flex-row flex-wrap justify-between max-w-screen-2xl gap-10">
+        {isCellFocused && (
+          targetDevices.map(td => {
+            const statusColorText = td.status === "Available" ? "text-green-600" : td.status === "Broken" ? "text-red-600" : "text-yellow-600";
+            return (
+
+              <div className="flex flex-col gap-1 card" key={td.rentalID}>
+                <p className="text-2xl font-bold px-2 text-left">Device information</p>
+                <p className="px-2 text-left">Location: ({cellX}, {cellY})</p>
+                <p className={"px-2 text-left " + statusColorText}>Status: {td.status}</p>
+                <p className="px-2 text-left">Vehicle: {td.deviceName}</p>
+                <p className="px-2 text-left">PPM rate: {td.rentalPrice}</p>
+              </div>
+
+            )
+          })
+        )}
+      </div>
     </div>
 
   );

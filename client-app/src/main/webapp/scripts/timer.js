@@ -18,7 +18,7 @@ function startTimer(event) {
 
 function updateTimer() {
   seconds++;
-  console.log(seconds);
+  // console.log(seconds);
   document.getElementById('timer').innerText = formatTime(seconds);
 }
 
